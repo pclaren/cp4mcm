@@ -7,7 +7,7 @@
   "template_input_params": [
     {
       "name": "ssh_key_label",
-      "label": "User's public SSH key label",
+      "label": "IBM Cloud SSH Keys Name/Label",
       "description": "null",
       "type": "string",
       "default": "",
