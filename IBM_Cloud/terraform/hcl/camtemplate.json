@@ -9,8 +9,6 @@
      "template_provider": "IBM"
    },
    "metadata": {
-    "displayName": "CentOS 7 base VM",
-    "providerDisplayName": "IBM",
     "bullets": []
    }
  }
