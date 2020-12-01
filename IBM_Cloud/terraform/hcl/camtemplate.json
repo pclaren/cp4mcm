@@ -1,5 +1,5 @@
 {
-   "name": "CentOS 7 base VM",
+   "name": "CentOS 7 base VM in IBM Cloud",
    "description": "Deploy basic CentOS 7 image",
    "version": "1.0",
    "type": "userCreated",
