@@ -1,0 +1,16 @@
+{
+   "name": "CentOS 7 base VM",
+   "description": "Deploy basic CentOS 7 image",
+   "version": "1.0",
+   "type": "userCreated",
+   "manifest": {
+     "template_type": "Terraform",
+     "template_format": "HCL",
+     "template_provider": "pcl"
+   },
+   "metadata": {
+    "displayName": "CentOS 7 base VM",
+    "providerDisplayName": "IBM",
+    "bullets": []
+   }
+ }
