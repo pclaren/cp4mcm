@@ -1,0 +1,60 @@
+{
+  "input_datatypes": [ ],
+  "input_namespaces": [ ],
+  "output_namespace": "",
+  "input_groups": [ ],
+  "output_groups": [ ],
+  "template_input_params": [
+    {
+      "name": "ssh_key_label",
+      "label": "IBM Cloud SSH Keys Name/Label",
+      "description": "null",
+      "type": "string",
+      "default": "",
+      "regex": "",
+      "group_name": "",
+      "required": true,
+      "secured": false,
+      "hidden": false,
+      "immutable": false,
+      "immutable_after_create": false
+    },
+    {
+      "name": "hostname",
+      "label": "VM hostname",
+      "description": "null",
+      "type": "string",
+      "default": "",
+      "regex": "",
+      "group_name": "",
+      "required": true,
+      "secured": false,
+      "hidden": false,
+      "immutable": false,
+      "immutable_after_create": false
+    }
+  ],
+  "template_output_params":
+  [
+    {
+      "name": "instance_ip_addr",
+      "label": "Instance Ip Addr",
+      "description": "The public IP address of the main server instance.",
+      "group_name": "",
+      "secured": false,
+      "hidden": false,
+      "shortname": "",
+      "type": "string"
+    },
+    {
+      "name": "private_key",
+      "label": "Private key",
+      "description": "The private key of the main server instance.",
+      "group_name": "",
+      "secured": true,
+      "hidden": false,
+      "shortname": "",
+      "type": "string"
+    }
+  ]
+}

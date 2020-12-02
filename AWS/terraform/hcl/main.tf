@@ -1,5 +1,5 @@
 terraform {
-  required_version = "~> 0.11.0"
+  required_version = "> 0.13.0"
 }
 
 # Key pair for Ansible user
@@ -17,7 +17,7 @@ data "ibm_compute_ssh_key" "public_key" {
     label               = "${var.ssh_key_label}"
 }
 
-provider "ibm" {
+provider "aws" {
   version = "~> 0.7"
 }
 

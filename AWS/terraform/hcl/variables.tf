@@ -6,5 +6,11 @@
 variable "ssh_key_label" {}
 variable "hostname" {}
 variable "domainname" {}
-variable "cores" {}
-variable "memory" {}
+variable "cores" {
+  type = number
+  default = 1
+}
+variable "memory" {
+  type = number
+  default = 1024
+}
