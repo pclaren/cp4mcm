@@ -1,5 +1,5 @@
 terraform {
-  required_version = "> 0.13.0"
+  required_version = "> 0.13.5"
 }
 
 # Key pair for Ansible user
