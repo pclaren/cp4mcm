@@ -1,7 +1,3 @@
-terraform {
-  required_version = "> 0.13.0"
-}
-
 # Key pair for Ansible user
 resource "tls_private_key" "keyPairForAnsibleUser" {
  algorithm = "RSA"
@@ -15,10 +11,6 @@ resource "ibm_compute_ssh_key" "ansible_ssh_key" {
 # Public key to upload to VM
 data "ibm_compute_ssh_key" "public_key" {
     label               = "${var.ssh_key_label}"
-}
-
-provider "aws" {
-  version = "~> 0.7"
 }
 
 resource "ibm_compute_vm_instance" "vm1" {
