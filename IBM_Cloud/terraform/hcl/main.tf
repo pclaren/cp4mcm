@@ -1,6 +1,3 @@
-terraform {
-  required_version = "> 0.13.0"
-}
 
 # Key pair for Ansible user
 resource "tls_private_key" "keyPairForAnsibleUser" {
