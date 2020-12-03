@@ -1,30 +1,40 @@
 # Key pair for Ansible user
 resource "tls_private_key" "keyPairForAnsibleUser" {
- algorithm = "RSA"
+  algorithm = "RSA"
+  rsa_bits  = 4096
 }
 
-resource "ibm_compute_ssh_key" "ansible_ssh_key" {
-    public_key          = "${tls_private_key.keyPairForAnsibleUser.public_key_openssh}"
-    label               = "${var.hostname}_ansible_ssh_key"
+resource "aws_key_pair" "generated_key" {
+  key_name    = "${var.hostname}_ansible_ssh_key"
+  public_key  = "${tls_private_key.keyPairForAnsibleUser.public_key_openssh}"
 }
 
-# Public key to upload to VM
-data "ibm_compute_ssh_key" "public_key" {
-    label               = "${var.ssh_key_label}"
+resource "aws_instance" "centos" {
+  // CentOS 7
+  ami = "ami-0b850cf02cc00fdc8"
+  instance_type = "t2.micro"
+  key_name = "${aws_key_pair.generated_key.key_name}"
+  vpc_security_group_ids = ["${aws_security_group.instance.id}"]
+
+  tags = {
+    Name = "${var.hostname}"
+  }
 }
 
+resource "aws_security_group" "instance" {
+  name = "${var.hostname}_instance"
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
-resource "ibm_compute_vm_instance" "vm1" {
-  cores                  = "${var.cores}"
-  memory                 = "${var.memory}"
-  domain                 = "${var.domainname}"
-  hostname               = "${var.hostname}"
-  datacenter             = "fra02"
-  ssh_key_ids            = ["${ibm_compute_ssh_key.ansible_ssh_key.id}", "${data.ibm_compute_ssh_key.public_key.id}"]
-  os_reference_code      = "CENTOS_7_64"
-  network_speed          = 100
-  hourly_billing         = true
-  private_network_only   = false
-  disks                  = [25]
-  local_disk             = true
+  // All all outgoing traffic
+  egress {
+    from_port = 0
+    to_port   = 0
+    protocol  = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 }
