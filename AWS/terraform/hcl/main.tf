@@ -14,7 +14,7 @@ resource "aws_instance" "centos" {
   ami = "ami-0b850cf02cc00fdc8"
   instance_type = "t2.micro"
   key_name = "${aws_key_pair.generated_key.key_name}"
-  vpc_security_group_ids = [aws_security_group.instance.id]
+  vpc_security_group_ids = ["${aws_security_group.instance.id}"]
 
   tags = {
     Name = "${var.hostname}"
