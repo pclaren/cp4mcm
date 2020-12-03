@@ -6,6 +6,7 @@ locals {
 # Key pair for Ansible user
 resource "tls_private_key" "keyPairForAnsibleUser" {
  algorithm = "RSA"
+ rsa_bits  = 4096
 }
 
 resource "ibm_compute_ssh_key" "ansible_ssh_key" {
@@ -13,19 +14,13 @@ resource "ibm_compute_ssh_key" "ansible_ssh_key" {
     label               = "${var.hostname}_ansible_ssh_key"
 }
 
-# Public key to upload to VM
-data "ibm_compute_ssh_key" "public_key" {
-    label               = "${var.ssh_key_label}"
-}
-
-
 resource "ibm_compute_vm_instance" "vm1" {
   cores                  = "${var.cores}"
   memory                 = "${var.memory}"
   domain                 = "${var.domainname}"
   hostname               = "${var.hostname}"
   datacenter             = "fra02"
-  ssh_key_ids            = ["${ibm_compute_ssh_key.ansible_ssh_key.id}", "${data.ibm_compute_ssh_key.public_key.id}"]
+  ssh_key_ids            = ["${ibm_compute_ssh_key.ansible_ssh_key.id}"]
   os_reference_code      = "CENTOS_7_64"
   network_speed          = 10
   hourly_billing         = true
