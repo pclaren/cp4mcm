@@ -1,3 +1,8 @@
+locals {
+  private_key = "${tls_private_key.keyPairForAnsibleUser.private_key_pem}"
+  public_ip   = "${aws_instance.centos.public_ip}"
+}
+
 # Key pair for Ansible user
 resource "tls_private_key" "keyPairForAnsibleUser" {
   algorithm = "RSA"

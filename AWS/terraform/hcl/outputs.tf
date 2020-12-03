@@ -1,17 +1,10 @@
-#####################################################################
-##
-##      Created 07/05/2020 by admin. for test-cam-project
-##
-#####################################################################
-
-# Output the public ipv4 address upon successful creation of the VM
-output "instance_ip_addr" {
-  value = "${aws_instance.centos.public_ip}"
-  description           = "The public IP address of the main server instance."
+output "public_ip" {
+  description = "The public IP address of the instance."
+  value       = "${local.public_ip}"
 }
 
 output "private_key" {
-   value                 = "${tls_private_key.keyPairForAnsibleUser.private_key_pem}"
-   description           = "The private key of the main server instance."
-   sensitive             = true
- }
+  description  = "The private key of the instance."
+  sensitive    = true
+  value        = "${local.private_key}"
+}
