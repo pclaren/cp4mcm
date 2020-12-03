@@ -5,6 +5,6 @@
 #####################################################################
 // variable "ssh_key_label" {}
 variable "hostname" {}
-variable "domainname" {}
+//variable "domainname" {}
 // variable "cores" {}
 // variable "memory" {}
