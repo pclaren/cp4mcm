@@ -23,7 +23,7 @@
   "template_output_params":
   [
     {
-      "name": "instance_ip_addr",
+      "name": "public_ip",
       "label": "Instance Ip Addr",
       "description": "The public IP address of the main server instance.",
       "group_name": "",
